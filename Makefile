@@ -73,5 +73,6 @@ $(TARGET) : $(OBJS)
 	$(CC) -o $@ $(ALL_LDFLAGS) $^ $(LDLIBS)
 
 obj/%.o : src/%.c
+	@mkdir -p "$(dir $@)"
 	$(CC) -c -o $@ $(ALL_CFLAGS) $<
 
