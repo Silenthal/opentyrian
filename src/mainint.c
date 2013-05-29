@@ -2215,7 +2215,7 @@ void JE_endLevelAni( void )
 	}
 	else
 	{
-		sprintf(tempStr, "%s %lu", miscText[28-1], player[0].cash);
+		sprintf(tempStr, "%s %u", miscText[28-1], player[0].cash);
 		JE_outTextGlow(VGAScreenSeg, 30, 50, tempStr);
 	}
 

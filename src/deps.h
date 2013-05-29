@@ -19,11 +19,11 @@
 #ifndef OPENTYR_SDL_DEPS_H
 #define OPENTYR_SDL_DEPS_H
 
-#include "SDL/SDL.h"
-#include "SDL/SDL_types.h"
-#include "SDL/SDL_endian.h"
+#include <SDL.h>
+#include <SDL_types.h>
+#include <SDL_endian.h>
 #ifdef WITH_NETWORK
-#	include "SDL/SDL_net.h"
+#	include <SDL_net.h>
 #endif
 #include <stdint.h>
 #include <stdbool.h>

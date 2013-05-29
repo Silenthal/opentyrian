@@ -2826,7 +2826,7 @@ new_game:
 						}
 						else
 						{
-							sprintf(levelWarningText[0], "%s %lu", miscText[37], JE_totalScore(&player[0]));
+							sprintf(levelWarningText[0], "%s %u", miscText[37], JE_totalScore(&player[0]));
 							strcpy(levelWarningText[1], "");
 							levelWarningLines = 2;
 						}

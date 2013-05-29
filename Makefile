@@ -1,10 +1,16 @@
 # BUILD SETTINGS ###########################################
 
 ifndef PLATFORM
-    ifneq ($(filter Msys Cygwin,$(shell uname -o)),)
+    ifdef SystemRoot
         PLATFORM := WIN32
+        RMDIR := rmdir /s /q
+        RMFILE := del
+        MKDIR := mkdir
     else
         PLATFORM := UNIX
+        RMDIR := rm -rf
+        RMFILE := rm -f
+        MKDIR := mkdir -p
     endif
 endif
 
@@ -43,7 +49,12 @@ endif
 EXTRA_LDLIBS += -lm
 
 SDL_CFLAGS := $(shell $(SDL_CONFIG) --cflags)
-SDL_LDLIBS := $(shell $(SDL_CONFIG) --libs) -lmingw32 -lSDLmain -lSDL
+SDL_LDLIBS := $(shell $(SDL_CONFIG) --libs)
+
+ifeq ($(PLATFORM),WIN32)
+    SDL_LDLIBS := -lmingw32 -lSDLmain -lSDL
+endif
+
 ifeq ($(WITH_NETWORK),1)
     SDL_LDLIBS += -lSDL_net
 endif
@@ -56,23 +67,25 @@ LDLIBS += $(EXTRA_LDLIBS) $(SDL_LDLIBS)
 
 .PHONY : all release clean
 
-all : $(TARGET)
+all : dirtest $(TARGET) 
 
 release : all
 	$(STRIP) $(TARGET)
 
 clean :
-	rm -rf obj/*
-	rm -f $(TARGET)
+	$(RMDIR) obj
+	$(RMFILE) $(TARGET)
 
 ifneq ($(MAKECMDGOALS), clean)
     -include $(OBJS:.o=.d)
 endif
 
+dirtest :
+	test -d obj || $(MKDIR) obj
+
 $(TARGET) : $(OBJS)
 	$(CC) -o $@ $(ALL_LDFLAGS) $^ $(LDLIBS)
 
 obj/%.o : src/%.c
-	@mkdir -p "$(dir $@)"
 	$(CC) -c -o $@ $(ALL_CFLAGS) $<
 
