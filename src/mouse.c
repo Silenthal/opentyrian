@@ -40,13 +40,13 @@ void JE_drawShapeTypeOne( uint16_t x, uint16_t y, uint8_t *shape )
 {
 	uint16_t xloop = 0, yloop = 0;
 	uint8_t *p = shape; /* shape pointer */
-	Uint8 *s;   /* screen pointer, 8-bit specific */
-	Uint8 *s_limit; /* buffer boundary */
+	uint8_t *s;   /* screen pointer, 8-bit specific */
+	uint8_t *s_limit; /* buffer boundary */
 
-	s = (Uint8 *)VGAScreen->pixels;
+	s = (uint8_t *)VGAScreen->pixels;
 	s += y * VGAScreen->pitch + x;
 
-	s_limit = (Uint8 *)VGAScreen->pixels;
+	s_limit = (uint8_t *)VGAScreen->pixels;
 	s_limit += VGAScreen->h * VGAScreen->pitch;
 
 	for (yloop = 0; yloop < 28; yloop++)
@@ -66,13 +66,13 @@ void JE_grabShapeTypeOne( uint16_t x, uint16_t y, uint8_t *shape )
 {
 	uint16_t xloop = 0, yloop = 0;
 	uint8_t *p = shape; /* shape pointer */
-	Uint8 *s;   /* screen pointer, 8-bit specific */
-	Uint8 *s_limit; /* buffer boundary */
+	uint8_t *s;   /* screen pointer, 8-bit specific */
+	uint8_t *s_limit; /* buffer boundary */
 
-	s = (Uint8 *)VGAScreen->pixels;
+	s = (uint8_t *)VGAScreen->pixels;
 	s += y * VGAScreen->pitch + x;
 
-	s_limit = (Uint8 *)VGAScreen->pixels;
+	s_limit = (uint8_t *)VGAScreen->pixels;
 	s_limit += VGAScreen->h * VGAScreen->pitch;
 
 	for (yloop = 0; yloop < 28; yloop++)

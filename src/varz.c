@@ -218,10 +218,10 @@ uint8_t displayTime;
 
 /* Demo Stuff */
 bool play_demo = false, record_demo = false, stopped_demo = false;
-Uint8 demo_num = 0;
+uint8_t demo_num = 0;
 FILE *demo_file = NULL;
 
-Uint8 demo_keys, next_demo_keys;
+uint8_t demo_keys, next_demo_keys;
 Uint16 demo_keys_wait;
 
 /* Sound Effects Queue */
@@ -1388,7 +1388,7 @@ void JE_drawSP( void )
 
 			if (superpixels[i].x < (unsigned)VGAScreen->w && superpixels[i].y < (unsigned)VGAScreen->h)
 			{
-				Uint8 *s = (Uint8 *)VGAScreen->pixels; /* screen pointer, 8-bit specific */
+				uint8_t *s = (uint8_t *)VGAScreen->pixels; /* screen pointer, 8-bit specific */
 				s += superpixels[i].y * VGAScreen->pitch;
 				s += superpixels[i].x;
 

@@ -60,13 +60,13 @@ void JE_darkenBackground( uint16_t neat )  /* wild detail level */
 	}
 }
 
-void blit_background_row( SDL_Surface *surface, int x, int y, Uint8 **map )
+void blit_background_row( SDL_Surface *surface, int x, int y, uint8_t **map )
 {
 	assert(surface->format->BitsPerPixel == 8);
 	
-	Uint8 *pixels = (Uint8 *)surface->pixels + (y * surface->pitch) + x,
-	      *pixels_ll = (Uint8 *)surface->pixels,  // lower limit
-	      *pixels_ul = (Uint8 *)surface->pixels + (surface->h * surface->pitch);  // upper limit
+	uint8_t *pixels = (uint8_t *)surface->pixels + (y * surface->pitch) + x,
+	      *pixels_ll = (uint8_t *)surface->pixels,  // lower limit
+	      *pixels_ul = (uint8_t *)surface->pixels + (surface->h * surface->pitch);  // upper limit
 	
 	for (int y = 0; y < 28; y++)
 	{
@@ -79,7 +79,7 @@ void blit_background_row( SDL_Surface *surface, int x, int y, Uint8 **map )
 		
 		for (int tile = 0; tile < 12; tile++)
 		{
-			Uint8 *data = *(map + tile);
+			uint8_t *data = *(map + tile);
 			
 			// no tile; skip tile
 			if (data == NULL)
@@ -106,13 +106,13 @@ void blit_background_row( SDL_Surface *surface, int x, int y, Uint8 **map )
 	}
 }
 
-void blit_background_row_blend( SDL_Surface *surface, int x, int y, Uint8 **map )
+void blit_background_row_blend( SDL_Surface *surface, int x, int y, uint8_t **map )
 {
 	assert(surface->format->BitsPerPixel == 8);
 	
-	Uint8 *pixels = (Uint8 *)surface->pixels + (y * surface->pitch) + x,
-	      *pixels_ll = (Uint8 *)surface->pixels,  // lower limit
-	      *pixels_ul = (Uint8 *)surface->pixels + (surface->h * surface->pitch);  // upper limit
+	uint8_t *pixels = (uint8_t *)surface->pixels + (y * surface->pitch) + x,
+	      *pixels_ll = (uint8_t *)surface->pixels,  // lower limit
+	      *pixels_ul = (uint8_t *)surface->pixels + (surface->h * surface->pitch);  // upper limit
 	
 	for (int y = 0; y < 28; y++)
 	{
@@ -125,7 +125,7 @@ void blit_background_row_blend( SDL_Surface *surface, int x, int y, Uint8 **map 
 		
 		for (int tile = 0; tile < 12; tile++)
 		{
-			Uint8 *data = *(map + tile);
+			uint8_t *data = *(map + tile);
 			
 			// no tile; skip tile
 			if (data == NULL)
@@ -156,7 +156,7 @@ void draw_background_1( SDL_Surface *surface )
 {
 	SDL_FillRect(surface, NULL, 0);
 	
-	Uint8 **map = (Uint8 **)mapYPos + mapXbpPos - 12;
+	uint8_t **map = (uint8_t **)mapYPos + mapXbpPos - 12;
 	
 	for (int i = -1; i < 7; i++)
 	{
@@ -176,7 +176,7 @@ void draw_background_2( SDL_Surface *surface )
 		// water effect combines background 1 and 2 by syncronizing the x coordinate
 		int x = smoothies[1] ? mapXPos : mapX2Pos;
 		
-		Uint8 **map = (Uint8 **)mapY2Pos + (smoothies[1] ? mapXbpPos : mapX2bpPos) - 12;
+		uint8_t **map = (uint8_t **)mapY2Pos + (smoothies[1] ? mapXbpPos : mapX2bpPos) - 12;
 		
 		for (int i = -1; i < 7; i++)
 		{
@@ -207,7 +207,7 @@ void draw_background_2_blend( SDL_Surface *surface )
 	if (map2YDelayMax > 1 && backMove2 < 2)
 		backMove2 = (map2YDelay == 1) ? 1 : 0;
 	
-	Uint8 **map = (Uint8 **)mapY2Pos + mapX2bpPos - 12;
+	uint8_t **map = (uint8_t **)mapY2Pos + mapX2bpPos - 12;
 	
 	for (int i = -1; i < 7; i++)
 	{
@@ -244,7 +244,7 @@ void draw_background_3( SDL_Surface *surface )
 		mapY3Pos -= 15;   /*Map Width*/
 	}
 	
-	Uint8 **map = (Uint8 **)mapY3Pos + mapX3bpPos - 12;
+	uint8_t **map = (uint8_t **)mapY3Pos + mapX3bpPos - 12;
 	
 	for (int i = -1; i < 7; i++)
 	{
@@ -256,7 +256,7 @@ void draw_background_3( SDL_Surface *surface )
 
 void JE_filterScreen( int8_t col, int8_t int_)
 {
-	Uint8 *s = NULL; /* screen pointer, 8-bit specific */
+	uint8_t *s = NULL; /* screen pointer, 8-bit specific */
 	int x, y;
 	unsigned int temp;
 	
@@ -325,12 +325,12 @@ void lava_filter( SDL_Surface *dst, SDL_Surface *src )
 	 * read from the top 185+1 scanlines, and there should be 320 */
 	
 	const int dst_pitch = dst->pitch;
-	Uint8 *dst_pixel = (Uint8 *)dst->pixels + (185 * dst_pitch);
-	const Uint8 * const dst_pixel_ll = (Uint8 *)dst->pixels;  // lower limit
+	uint8_t *dst_pixel = (uint8_t *)dst->pixels + (185 * dst_pitch);
+	const uint8_t * const dst_pixel_ll = (uint8_t *)dst->pixels;  // lower limit
 	
 	const int src_pitch = src->pitch;
-	const Uint8 *src_pixel = (Uint8 *)src->pixels + (185 * src->pitch);
-	const Uint8 * const src_pixel_ll = (Uint8 *)src->pixels;  // lower limit
+	const uint8_t *src_pixel = (uint8_t *)src->pixels + (185 * src->pitch);
+	const uint8_t * const src_pixel_ll = (uint8_t *)src->pixels;  // lower limit
 	
 	int w = 320 * 185 - 1;
 	
@@ -351,7 +351,7 @@ void lava_filter( SDL_Surface *dst, SDL_Surface *src )
 				
 				// value is average value of source pixel (2x), destination pixel above, and destination pixel below (all with waver)
 				// hue is red
-				Uint8 value = 0;
+				uint8_t value = 0;
 				
 				if (src_pixel + waver >= src_pixel_ll)
 					value += (*(src_pixel + waver) & 0x0f) * 2;
@@ -369,15 +369,15 @@ void water_filter( SDL_Surface *dst, SDL_Surface *src )
 {
 	assert(src->format->BitsPerPixel == 8 && dst->format->BitsPerPixel == 8);
 	
-	Uint8 hue = smoothie_data[1] << 4;
+	uint8_t hue = smoothie_data[1] << 4;
 	
 	/* we don't need to check for over-reading the pixel surfaces since we only
 	 * read from the top 185+1 scanlines, and there should be 320 */
 	
 	const int dst_pitch = dst->pitch;
-	Uint8 *dst_pixel = (Uint8 *)dst->pixels + (185 * dst_pitch);
+	uint8_t *dst_pixel = (uint8_t *)dst->pixels + (185 * dst_pitch);
 	
-	const Uint8 *src_pixel = (Uint8 *)src->pixels + (185 * src->pitch);
+	const uint8_t *src_pixel = (uint8_t *)src->pixels + (185 * src->pitch);
 	
 	int w = 320 * 185 - 1;
 	
@@ -404,7 +404,7 @@ void water_filter( SDL_Surface *dst, SDL_Surface *src )
 				}
 				else
 				{
-					Uint8 value = *src_pixel & 0x0f;
+					uint8_t value = *src_pixel & 0x0f;
 					value += *(dst_pixel + waver + dst_pitch) & 0x0f;
 					*dst_pixel = (value / 2) | hue;
 				}
@@ -417,8 +417,8 @@ void iced_blur_filter( SDL_Surface *dst, SDL_Surface *src )
 {
 	assert(src->format->BitsPerPixel == 8 && dst->format->BitsPerPixel == 8);
 	
-	Uint8 *dst_pixel = dst->pixels;
-	const Uint8 *src_pixel = src->pixels;
+	uint8_t *dst_pixel = dst->pixels;
+	const uint8_t *src_pixel = src->pixels;
 	
 	for (int y = 0; y < 184; ++y)
 	{
@@ -427,7 +427,7 @@ void iced_blur_filter( SDL_Surface *dst, SDL_Surface *src )
 			// value is average value of source pixel and destination pixel
 			// hue is icy blue
 			
-			const Uint8 value = (*src_pixel & 0x0f) + (*dst_pixel & 0x0f);
+			const uint8_t value = (*src_pixel & 0x0f) + (*dst_pixel & 0x0f);
 			*dst_pixel = (value / 2) | 0x80;
 			
 			++dst_pixel;
@@ -443,8 +443,8 @@ void blur_filter( SDL_Surface *dst, SDL_Surface *src )
 {
 	assert(src->format->BitsPerPixel == 8 && dst->format->BitsPerPixel == 8);
 	
-	Uint8 *dst_pixel = dst->pixels;
-	const Uint8 *src_pixel = src->pixels;
+	uint8_t *dst_pixel = dst->pixels;
+	const uint8_t *src_pixel = src->pixels;
 	
 	for (int y = 0; y < 184; ++y)
 	{
@@ -453,7 +453,7 @@ void blur_filter( SDL_Surface *dst, SDL_Surface *src )
 			// value is average value of source pixel and destination pixel
 			// hue is source pixel hue
 			
-			const Uint8 value = (*src_pixel & 0x0f) + (*dst_pixel & 0x0f);
+			const uint8_t value = (*src_pixel & 0x0f) + (*dst_pixel & 0x0f);
 			*dst_pixel = (value / 2) | (*src_pixel & 0xf0);
 			
 			++dst_pixel;

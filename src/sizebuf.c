@@ -39,7 +39,7 @@
 #include <assert.h>
 
 /* Construct buffer with the passed array and size */
-void SZ_Init(sizebuf_t * sz, Uint8 * buf, unsigned int size)
+void SZ_Init(sizebuf_t * sz, uint8_t * buf, unsigned int size)
 {
 	sz->data = buf;
 	sz->bufferLen = size;
@@ -67,7 +67,7 @@ void SZ_Memset(sizebuf_t * sz, int value, size_t count)
 }
 /* Mimic memcpy.  Two versions, one for buffers, one for sizebuf objects.
  * Overload in C++. */
-void SZ_Memcpy(sizebuf_t * sz, const Uint8 * buf, size_t count)
+void SZ_Memcpy(sizebuf_t * sz, const uint8_t * buf, size_t count)
 {
 	/* State checking */
 	if (sz->error || sz->bufferPos + count > sz->bufferLen)
@@ -127,7 +127,7 @@ void SZ_Seek(sizebuf_t * sz, long count, int mode)
 		sz->error = false;
 	}
 }
-const Uint8 * SZ_GetCurBufferPtr (sizebuf_t * sz)
+const uint8_t * SZ_GetCurBufferPtr (sizebuf_t * sz)
 {
 	return(sz->data);
 }

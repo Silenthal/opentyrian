@@ -67,7 +67,7 @@ void JE_starlib_main( void )
 	int16_t tempZ;
 	uint8_t tempCol;
 	struct JE_StarType *stars;
-	Uint8 *surf;
+	uint8_t *surf;
 
 	JE_wackyCol();
 

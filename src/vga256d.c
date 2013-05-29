@@ -34,7 +34,7 @@ void JE_pix( SDL_Surface *surface, int x, int y, uint8_t c )
 	/* Bad things happen if we don't clip */
 	if (x <  surface->pitch && y <  surface->h)
 	{
-		Uint8 *vga = surface->pixels;
+		uint8_t *vga = surface->pixels;
 		vga[y * surface->pitch + x] = c;
 	}
 }
@@ -54,7 +54,7 @@ void JE_rectangle( SDL_Surface *surface, int a, int b, int c, int d, int e ) /* 
 	if (a < surface->pitch && b < surface->h &&
 	    c < surface->pitch && d < surface->h)
 	{
-		Uint8 *vga = surface->pixels;
+		uint8_t *vga = surface->pixels;
 		int i;
 
 		/* Top line */
@@ -79,7 +79,7 @@ void JE_rectangle( SDL_Surface *surface, int a, int b, int c, int d, int e ) /* 
 	}
 }
 
-void fill_rectangle_xy( SDL_Surface *surface, int x, int y, int x2, int y2, Uint8 color )
+void fill_rectangle_xy( SDL_Surface *surface, int x, int y, int x2, int y2, uint8_t color )
 {
 	SDL_Rect rect = { x, y, x2 - x + 1, y2 - y + 1 };
 	SDL_FillRect(surface, &rect, color);
@@ -90,7 +90,7 @@ void JE_barShade( SDL_Surface *surface, int a, int b, int c, int d ) /* x1, y1, 
 	if (a < surface->pitch && b < surface->h &&
 	    c < surface->pitch && d < surface->h)
 	{
-		Uint8 *vga = surface->pixels;
+		uint8_t *vga = surface->pixels;
 		int i, j, width;
 
 		width = c - a + 1;
@@ -112,7 +112,7 @@ void JE_barBright( SDL_Surface *surface, int a, int b, int c, int d ) /* x1, y1,
 	if (a < surface->pitch && b < surface->h &&
 	    c < surface->pitch && d < surface->h)
 	{
-		Uint8 *vga = surface->pixels;
+		uint8_t *vga = surface->pixels;
 		int i, j, width;
 
 		width = c-a+1;
@@ -140,7 +140,7 @@ void JE_barBright( SDL_Surface *surface, int a, int b, int c, int d ) /* x1, y1,
 	}
 }
 
-void draw_segmented_gauge( SDL_Surface *surface, int x, int y, Uint8 color, uint32_t segment_width, uint32_t segment_height, uint32_t segment_value, uint32_t value )
+void draw_segmented_gauge( SDL_Surface *surface, int x, int y, uint8_t color, uint32_t segment_width, uint32_t segment_height, uint32_t segment_value, uint32_t value )
 {
 	assert(segment_width > 0 && segment_height > 0);
 

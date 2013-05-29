@@ -1786,7 +1786,7 @@ bool load_next_demo( void )
 	difficultyLevel = 2;
 	bonusLevelCurrent = false;
 
-	Uint8 temp = fgetc(demo_file);
+	uint8_t temp = fgetc(demo_file);
 	JE_initEpisode(temp);
 	efread(levelName, 1, 10, demo_file); levelName[10] = '\0';
 	lvlFileNum = fgetc(demo_file);
@@ -2102,7 +2102,7 @@ void JE_playCredits( void )
 			{
 				if (strcmp(&credstr[line][0], ".") != 0 && strlen(credstr[line]))
 				{
-					const Uint8 color = credstr[line][0] - 65;
+					const uint8_t color = credstr[line][0] - 65;
 					const char *text = &credstr[line][1];
 					
 					const int x = 110 - JE_textWidth(text, SMALL_FONT_SHAPES) / 2;

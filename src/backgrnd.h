@@ -35,8 +35,8 @@ extern uint8_t smoothie_data[9];
 
 void JE_darkenBackground( uint16_t neat );
 
-void blit_background_row( SDL_Surface *surface, int x, int y, Uint8 **map );
-void blit_background_row_blend( SDL_Surface *surface, int x, int y, Uint8 **map );
+void blit_background_row( SDL_Surface *surface, int x, int y, uint8_t **map );
+void blit_background_row_blend( SDL_Surface *surface, int x, int y, uint8_t **map );
 
 void draw_background_1( SDL_Surface *surface );
 void draw_background_2( SDL_Surface *surface );

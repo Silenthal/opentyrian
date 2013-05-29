@@ -190,7 +190,7 @@ typedef struct {
 	int16_t shotDevX, shotDirX, shotDevY, shotDirY, shotCirSizeX, shotCirSizeY;
 	uint8_t shotTrail;
 	uint16_t shotGr, shotAni, shotAniMax;
-	Uint8 shotDmg;
+	uint8_t shotDmg;
 	uint8_t shotBlastFilter, chainReaction, playerNumber, aimAtEnemy, aimDelay, aimDelayMax;
 } PlayerShotDataType;
 
@@ -213,7 +213,7 @@ typedef struct {
 typedef struct {
 	unsigned int x, y, z;
 	signed int delta_x, delta_y;
-	Uint8 color;
+	uint8_t color;
 } superpixel_type;
 
 extern int16_t tempDat, tempDat2, tempDat3;
@@ -266,10 +266,10 @@ extern int8_t flashChange;
 extern uint8_t displayTime;
 
 extern bool play_demo, record_demo, stopped_demo;
-extern Uint8 demo_num;
+extern uint8_t demo_num;
 extern FILE *demo_file;
 
-extern Uint8 demo_keys, next_demo_keys;
+extern uint8_t demo_keys, next_demo_keys;
 extern Uint16 demo_keys_wait;
 
 extern uint8_t soundQueue[8];

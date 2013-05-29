@@ -74,7 +74,7 @@ uint8_t itemAvailMax[9]; /* [1..9] */
 void JE_starShowVGA( void )
 {
 	uint8_t *src;
-	Uint8 *s = NULL; /* screen pointer, 8-bit specific */
+	uint8_t *s = NULL; /* screen pointer, 8-bit specific */
 
 	int x, y, lightx, lighty, lightdist;
 
@@ -631,7 +631,7 @@ void JE_main( void )
 {
 	int i;
 
-	Uint8 *s; /* screen pointer, 8-bit specific */
+	uint8_t *s; /* screen pointer, 8-bit specific */
 
 	char buffer[256];
 
@@ -944,7 +944,7 @@ start_level_first:
 
 	if (!play_demo && record_demo)
 	{
-		Uint8 new_demo_num = 0;
+		uint8_t new_demo_num = 0;
 
 		do
 		{
@@ -1313,7 +1313,7 @@ level_loop:
 	/* DRAWSTARS */
 	if (starActive || astralDuration > 0)
 	{
-		s = (Uint8 *)VGAScreen->pixels;
+		s = (uint8_t *)VGAScreen->pixels;
 
 		for (i = MAX_STARS; i--; )
 		{
@@ -2583,8 +2583,8 @@ void JE_loadMap( void )
 
 	char buffer[256];
 	int i;
-	Uint8 pic_buffer[320*200]; /* screen buffer, 8-bit specific */
-	Uint8 *vga, *pic, *vga2; /* screen pointer, 8-bit specific */
+	uint8_t pic_buffer[320*200]; /* screen buffer, 8-bit specific */
+	uint8_t *vga, *pic, *vga2; /* screen pointer, 8-bit specific */
 
 	lastCubeMax = cubeMax;
 
@@ -4359,7 +4359,7 @@ void JE_eventSystem( void )
 
 	case 5:  // load enemy shape banks
 		{
-			Uint8 newEnemyShapeTables[] =
+			uint8_t newEnemyShapeTables[] =
 			{
 				eventRec[eventLoc-1].eventdat > 0 ? eventRec[eventLoc-1].eventdat : 0,
 				eventRec[eventLoc-1].eventdat2 > 0 ? eventRec[eventLoc-1].eventdat2 : 0,
@@ -5160,7 +5160,7 @@ void JE_whoa( void )
 {
 	unsigned int i, j, color, offset, timer;
 	unsigned int screenSize, topBorder, bottomBorder;
-	Uint8 * TempScreen1, * TempScreen2, * TempScreenSwap;
+	uint8_t * TempScreen1, * TempScreen2, * TempScreenSwap;
 
 	/* 'whoa' gets us that nifty screen fade used when you type in
 	 * 'engage'.  We need two temporary screen buffers (char arrays can
@@ -5186,8 +5186,8 @@ void JE_whoa( void )
 
 	/* Clear the top and bottom borders.  We don't want to process
 	 * them and we don't want to draw them. */
-	memset((Uint8 *)VGAScreenSeg->pixels, 0, topBorder);
-	memset((Uint8 *)VGAScreenSeg->pixels + screenSize - bottomBorder, 0, bottomBorder);
+	memset((uint8_t *)VGAScreenSeg->pixels, 0, topBorder);
+	memset((uint8_t *)VGAScreenSeg->pixels + screenSize - bottomBorder, 0, bottomBorder);
 
 	/* Copy our test subject to one of the temporary buffers.  Blank the other */
 	memset(TempScreen1, 0, screenSize);
@@ -5217,7 +5217,7 @@ void JE_whoa( void )
 		}
 
 		/* Now copy that mess to the buffer. */
-		memcpy((Uint8 *)VGAScreenSeg->pixels + topBorder, TempScreen1 + topBorder, screenSize - bottomBorder);
+		memcpy((uint8_t *)VGAScreenSeg->pixels + topBorder, TempScreen1 + topBorder, screenSize - bottomBorder);
 
 		JE_showVGA();
 

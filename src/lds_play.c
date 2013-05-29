@@ -47,7 +47,7 @@ static const Uint16 frequency[(13 * 15) - 3] = {
 };
 
 /* Vibrato (sine) table */
-static const Uint8 vibtab[25 + (13 * 3)] = {
+static const uint8_t vibtab[25 + (13 * 3)] = {
   0, 13, 25, 37, 50, 62, 74, 86, 98, 109, 120, 131, 142, 152, 162,
   171, 180, 189, 197, 205, 212, 219, 225, 231, 236, 240, 244, 247,
   250, 252, 254, 255, 255, 255, 254, 252, 250, 247, 244, 240, 236,
@@ -56,7 +56,7 @@ static const Uint8 vibtab[25 + (13 * 3)] = {
 };
 
 /* Tremolo (sine * sine) table */
-static const Uint8 tremtab[128] = {
+static const uint8_t tremtab[128] = {
   0, 0, 1, 1, 2, 4, 5, 7, 10, 12, 15, 18, 21, 25, 29, 33, 37, 42, 47,
   52, 57, 62, 67, 73, 79, 85, 90, 97, 103, 109, 115, 121, 128, 134,
   140, 146, 152, 158, 165, 170, 176, 182, 188, 193, 198, 203, 208,
@@ -74,7 +74,7 @@ static SoundBank *soundbank = NULL;
 static Channel channel[9];
 static Position *positions = NULL;
 
-static Uint8 fmchip[0xff], jumping, fadeonoff, allvolume, hardfade, tempo_now, pattplay, tempo, regbd, chandelay[9], mode, pattlen;
+static uint8_t fmchip[0xff], jumping, fadeonoff, allvolume, hardfade, tempo_now, pattplay, tempo, regbd, chandelay[9], mode, pattlen;
 static Uint16 posplay, jumppos, speed;
 static Uint16 *patterns = NULL;
 static Uint16 numpatch, numposi, mainvolume;
@@ -229,7 +229,7 @@ void lds_rewind( void )
 	}
 }
 
-void lds_setregs(Uint8 reg, Uint8 val)
+void lds_setregs(uint8_t reg, uint8_t val)
 {
 	if(fmchip[reg] == val) return;
 
@@ -237,7 +237,7 @@ void lds_setregs(Uint8 reg, Uint8 val)
 	opl_write(reg, val);
 }
 
-void lds_setregs_adv(Uint8 reg, Uint8 mask, Uint8 val)
+void lds_setregs_adv(uint8_t reg, uint8_t mask, uint8_t val)
 {
 	lds_setregs(reg, (fmchip[reg] & mask) | val);
 }
@@ -246,7 +246,7 @@ int lds_update( void )
 {
 	Uint16 comword, freq, octave, chan, tune, wibc, tremc, arpreg;
 	int vbreak;
-	Uint8 level, regnum, comhi, comlo;
+	uint8_t level, regnum, comhi, comlo;
 	int i;
 	Channel *c;
 
@@ -273,7 +273,7 @@ int lds_update( void )
 			}
 
 		} else {
-			if( (Uint8) ((allvolume + (0x100 - fadeonoff)) & 0xff) <= mainvolume)
+			if( (uint8_t) ((allvolume + (0x100 - fadeonoff)) & 0xff) <= mainvolume)
 			{
 				allvolume += 0x100 - fadeonoff;
 			} else {
@@ -302,7 +302,7 @@ int lds_update( void )
 			c = &channel[chan];
 			if(!c->packwait) {
 				Uint16 patnum = positions[posplay * 9 + chan].patnum;
-				Uint8 transpose = positions[posplay * 9 + chan].transpose;
+				uint8_t transpose = positions[posplay * 9 + chan].transpose;
 				/*printf("> %p", positions);*/
 
 				comword = patterns[patnum + c->packpos];
@@ -411,7 +411,7 @@ int lds_update( void )
 								break;
 							}
 						} else {
-							Uint8	sound;
+							uint8_t	sound;
 							Uint16	high;
 							Sint8	transp = transpose & 127;
 							/*
@@ -655,7 +655,7 @@ void lds_playsound(int inst_number, int channel_number, int tunehigh)
 	Channel		*c = &channel[channel_number];		/* current channel */
 	SoundBank		*i = &soundbank[inst_number];		/* current instrument */
 	Uint32		regnum = op_table[channel_number];	/* channel's OPL2 register */
-	Uint8		volcalc, octave;
+	uint8_t		volcalc, octave;
 	Uint16	freq;
 	
 	/* set fine tune */

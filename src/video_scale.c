@@ -78,7 +78,7 @@ void set_scaler_by_name( const char *name )
 
 void no_scale( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels,
+	uint8_t *src = src_surface->pixels,
 	      *dst = dst_surface->pixels;
 	
 #ifdef VGA_CENTERED
@@ -98,7 +98,7 @@ void no_scale( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 
 void nn_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;
@@ -147,7 +147,7 @@ void nn_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 
 void nn_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;
@@ -197,7 +197,7 @@ void nn_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 
 void scale2x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;
@@ -250,7 +250,7 @@ void scale2x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 
 void scale2x_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;
@@ -304,7 +304,7 @@ void scale2x_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 
 void scale3x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;
@@ -371,7 +371,7 @@ void scale3x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 
 void scale3x_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;

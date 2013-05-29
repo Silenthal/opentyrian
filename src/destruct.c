@@ -217,7 +217,7 @@ void DE_generateBaseTerrain( uint32_t, uint32_t *);
 void DE_drawBaseTerrain( uint32_t * );
 void DE_generateUnits( uint32_t * );
 void DE_generateWalls( struct destruct_world_s * );
-void DE_generateRings(SDL_Surface *, Uint8 );
+void DE_generateRings(SDL_Surface *, uint8_t );
 void DE_ResetLevel( void );
 uint32_t JE_placementPosition( uint32_t, uint32_t, uint32_t * );
 
@@ -231,7 +231,7 @@ void DE_RunTickDrawWalls( void );
 void DE_DrawTrails( struct destruct_shot_s *, uint32_t, uint32_t, uint32_t );
 void JE_tempScreenChecking( void );
 void JE_superPixel( uint32_t, uint32_t );
-void JE_pixCool( uint32_t, uint32_t, Uint8 );
+void JE_pixCool( uint32_t, uint32_t, uint8_t );
 
 //player functions
 void DE_RunTickGetInput( void );
@@ -1126,7 +1126,7 @@ label_outer_break:
 	} while (remainWalls != 0);
 }
 
-void DE_generateRings( SDL_Surface * screen, Uint8 pixel )
+void DE_generateRings( SDL_Surface * screen, uint8_t pixel )
 {
 	uint32_t i, j, tempSize, rings;
 	int tempPosX1, tempPosY1, tempPosX2, tempPosY2;
@@ -1148,13 +1148,13 @@ void DE_generateRings( SDL_Surface * screen, Uint8 pixel )
 			if ((tempPosY2 > 12) && (tempPosY2 < 200)
 			 && (tempPosX2 > 0) && (tempPosX2 < 319))
 			{
-				((Uint8 *)screen->pixels)[tempPosX2 + tempPosY2 * screen->pitch] = pixel;
+				((uint8_t *)screen->pixels)[tempPosX2 + tempPosY2 * screen->pitch] = pixel;
 			}
 		}
 	}
 }
 
-uint32_t __aliasDirtPixel(const SDL_Surface * screen, uint32_t x, uint32_t y, const Uint8 * s) {
+uint32_t __aliasDirtPixel(const SDL_Surface * screen, uint32_t x, uint32_t y, const uint8_t * s) {
 
 	//A helper function used when aliasing dirt.  That's a messy process;
 	//let's contain the mess here.
@@ -1189,7 +1189,7 @@ void JE_aliasDirt( SDL_Surface * screen )
 
 	/* This is a pointer to a screen.  If you don't like pointer arithmetic,
 	 * you won't like this function. */
-	Uint8 *s = screen->pixels;
+	uint8_t *s = screen->pixels;
 	s += 12 * screen->pitch;
 
 	for (y = 12; y < (unsigned)screen->h; y++) {
@@ -1233,7 +1233,7 @@ uint32_t JE_placementPosition( uint32_t passed_x, uint32_t width, uint32_t * wor
 bool JE_stabilityCheck( uint32_t x, uint32_t y )
 {
 	uint32_t i, numDirtPixels;
-	Uint8 * s;
+	uint8_t * s;
 
 
 	numDirtPixels = 0;
@@ -1255,10 +1255,10 @@ bool JE_stabilityCheck( uint32_t x, uint32_t y )
 
 void JE_tempScreenChecking( void ) /*and copy to vgascreen*/
 {
-	Uint8 *s = VGAScreen->pixels;
+	uint8_t *s = VGAScreen->pixels;
 	s += 12 * VGAScreen->pitch;
 
-	Uint8 *temps = destructTempScreen->pixels;
+	uint8_t *temps = destructTempScreen->pixels;
 	temps += 12 * destructTempScreen->pitch;
 
 	for (int y = 12; y < VGAScreen->h; y++)
@@ -1373,7 +1373,7 @@ void JE_superPixel( uint32_t tempPosX, uint32_t tempPosY )
 
 	int x, y, maxX, maxY;
 	uint32_t rowLen;
-	Uint8 *s;
+	uint8_t *s;
 
 
 	maxX = destructTempScreen->pitch;
@@ -1879,7 +1879,7 @@ void DE_RunTickExplosions( void )
 			switch(exploRec[i].exploType)
 			{
 				case EXPL_DIRT:
-					((Uint8 *)destructTempScreen->pixels)[tempPosX + tempPosY * destructTempScreen->pitch] = PIXEL_DIRT;
+					((uint8_t *)destructTempScreen->pixels)[tempPosX + tempPosY * destructTempScreen->pitch] = PIXEL_DIRT;
 					break;
 
 				case EXPL_NORMAL:
@@ -2075,7 +2075,7 @@ void DE_RunTickShots( void )
 		}
 
 		/* Our last collision check, at least for now.  We hit dirt. */
-		if((((Uint8 *)destructTempScreen->pixels)[tempPosX + tempPosY * destructTempScreen->pitch]) == PIXEL_DIRT)
+		if((((uint8_t *)destructTempScreen->pixels)[tempPosX + tempPosY * destructTempScreen->pitch]) == PIXEL_DIRT)
 		{
 			shotRec[i].isAvailable = true;
 			JE_makeExplosion(tempPosX, tempPosY, shotRec[i].shottype);
@@ -2821,7 +2821,7 @@ void DE_RunTickPlaySounds( void )
 	}
 }
 
-void JE_pixCool( uint32_t x, uint32_t y, Uint8 c )
+void JE_pixCool( uint32_t x, uint32_t y, uint8_t c )
 {
 	JE_pix(VGAScreen, x, y, c);
 	JE_pix(VGAScreen, x - 1, y, c - 2);

@@ -742,8 +742,8 @@ const char *get_user_directory( void )
 #endif // TARGET_MACOSX
 
 // for compatibility
-Uint8 joyButtonAssign[4] = {1, 4, 5, 5};
-Uint8 inputDevice_ = 0, jConfigure = 0, midiPort = 1;
+uint8_t joyButtonAssign[4] = {1, 4, 5, 5};
+uint8_t inputDevice_ = 0, jConfigure = 0, midiPort = 1;
 
 void JE_loadConfiguration( void )
 {
@@ -855,7 +855,7 @@ void JE_loadConfiguration( void )
 			memcpy(&saveFiles[z].input2, p, sizeof(uint8_t)); p++;
 			
 			/* booleans were 1 byte in pascal -- working around it */
-			Uint8 temp;
+			uint8_t temp;
 			memcpy(&temp, p, 1); p++;
 			saveFiles[z].gameHasRepeated = temp != 0;
 			
@@ -968,7 +968,7 @@ void JE_saveConfiguration( void )
 		memcpy(p, &tempSaveFile.input2, sizeof(uint8_t)); p++;
 		
 		/* booleans were 1 byte in pascal -- working around it */
-		Uint8 temp = tempSaveFile.gameHasRepeated != false;
+		uint8_t temp = tempSaveFile.gameHasRepeated != false;
 		memcpy(p, &temp, 1); p++;
 		
 		memcpy(p, &tempSaveFile.initialDifficulty, sizeof(uint8_t)); p++;

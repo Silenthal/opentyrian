@@ -179,7 +179,7 @@ inline bool diff(unsigned int w1, unsigned int w2)
 
 void hq2x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;
@@ -2972,7 +2972,7 @@ void hq2x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 
 void hq3x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;
@@ -6825,7 +6825,7 @@ void hq3x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 
 void hq4x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 {
-	Uint8 *src = src_surface->pixels, *src_temp,
+	uint8_t *src = src_surface->pixels, *src_temp,
 	      *dst = dst_surface->pixels, *dst_temp;
 	int src_pitch = src_surface->pitch,
 	    dst_pitch = dst_surface->pitch;

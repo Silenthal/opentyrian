@@ -43,7 +43,7 @@ typedef struct
 {
 	Uint16 width, height;
 	Uint16 size;
-	Uint8 *data;
+	uint8_t *data;
 }
 Sprite;
 
@@ -82,15 +82,15 @@ void free_sprites( unsigned int table );
 
 void blit_sprite( SDL_Surface *, int x, int y, unsigned int table, unsigned int index ); // JE_newDrawCShapeNum
 void blit_sprite_blend( SDL_Surface *, int x, int y, unsigned int table, unsigned int index ); // JE_newDrawCShapeTrick
-void blit_sprite_hv_unsafe( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, Uint8 hue, Sint8 value ); // JE_newDrawCShapeBright
-void blit_sprite_hv( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, Uint8 hue, Sint8 value ); // JE_newDrawCShapeAdjust
-void blit_sprite_hv_blend( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, Uint8 hue, Sint8 value ); // JE_newDrawCShapeModify
+void blit_sprite_hv_unsafe( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value ); // JE_newDrawCShapeBright
+void blit_sprite_hv( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value ); // JE_newDrawCShapeAdjust
+void blit_sprite_hv_blend( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value ); // JE_newDrawCShapeModify
 void blit_sprite_dark( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, bool black ); // JE_newDrawCShapeDarken, JE_newDrawCShapeShadow
 
 typedef struct
 {
 	unsigned int size;
-	Uint8 *data;
+	uint8_t *data;
 }
 Sprite2_array;
 
@@ -104,7 +104,7 @@ void free_sprite2s( Sprite2_array * );
 void blit_sprite2( SDL_Surface *, int x, int y, Sprite2_array, unsigned int index );
 void blit_sprite2_blend( SDL_Surface *,  int x, int y, Sprite2_array, unsigned int index );
 void blit_sprite2_darken( SDL_Surface *, int x, int y, Sprite2_array, unsigned int index );
-void blit_sprite2_filter( SDL_Surface *, int x, int y, Sprite2_array, unsigned int index, Uint8 filter );
+void blit_sprite2_filter( SDL_Surface *, int x, int y, Sprite2_array, unsigned int index, uint8_t filter );
 
 void blit_sprite2x2( SDL_Surface *, int x, int y, Sprite2_array, unsigned int index );
 void blit_sprite2x2_blend( SDL_Surface *, int x, int y, Sprite2_array, unsigned int index );

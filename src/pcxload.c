@@ -23,7 +23,7 @@
 
 void JE_loadPCX( const char *file ) // this is only meant to load tshp2.pcx
 {
-	Uint8 *s = VGAScreen->pixels; /* 8-bit specific */
+	uint8_t *s = VGAScreen->pixels; /* 8-bit specific */
 	
 	FILE *f = dir_fopen_die(data_dir(), file, "rb");
 	
@@ -43,7 +43,7 @@ void JE_loadPCX( const char *file ) // this is only meant to load tshp2.pcx
 	
 	for (int i = 0; i < 320 * 200; )
 	{
-		Uint8 p = fgetc(f);
+		uint8_t p = fgetc(f);
 		if ((p & 0xc0) == 0xc0)
 		{
 			i += (p & 0x3f);
