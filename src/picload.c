@@ -36,7 +36,7 @@ void JE_loadPic(SDL_Surface *screen, uint8_t PCXnumber, bool storepal )
 		first = false;
 
 		uint16_t temp;
-		efread(&temp, sizeof(Uint16), 1, f);
+		efread(&temp, sizeof(uint16_t), 1, f);
 		for (int i = 0; i < PCX_NUM; i++)
 		{
 			efread(&pcxpos[i], sizeof(int32_t), 1, f);

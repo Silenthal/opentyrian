@@ -28,7 +28,7 @@ const unsigned char op_table[9] = {0x00, 0x01, 0x02, 0x08, 0x09, 0x0a, 0x10, 0x1
    Thanks, guys! Adplug is awesome! :D */
 
 /* Note frequency table (16 notes / octave) */
-static const Uint16 frequency[(13 * 15) - 3] = {
+static const uint16_t frequency[(13 * 15) - 3] = {
   343, 344, 345, 347, 348, 349, 350, 352, 353, 354, 356, 357, 358,
   359, 361, 362, 363, 365, 366, 367, 369, 370, 371, 373, 374, 375,
   377, 378, 379, 381, 382, 384, 385, 386, 388, 389, 391, 392, 393,
@@ -68,16 +68,16 @@ static const uint8_t tremtab[128] = {
   25, 21, 18, 15, 12, 10, 7, 5, 4, 2, 1, 1, 0
 };
 
-static const Uint16 maxsound = 0x3f, maxpos = 0xff;
+static const uint16_t maxsound = 0x3f, maxpos = 0xff;
 
 static SoundBank *soundbank = NULL;
 static Channel channel[9];
 static Position *positions = NULL;
 
 static uint8_t fmchip[0xff], jumping, fadeonoff, allvolume, hardfade, tempo_now, pattplay, tempo, regbd, chandelay[9], mode, pattlen;
-static Uint16 posplay, jumppos, speed;
-static Uint16 *patterns = NULL;
-static Uint16 numpatch, numposi, mainvolume;
+static uint16_t posplay, jumppos, speed;
+static uint16_t *patterns = NULL;
+static uint16_t numpatch, numposi, mainvolume;
 
 bool playing, songlooped;
 
@@ -160,7 +160,7 @@ bool lds_load( FILE *f, unsigned int music_offset, unsigned int music_size )
 			* word fields anyway, so it ought to be an even number (hopefully) and
 			* we can just divide it by 2 to get our array index of 16bit words.
 			*/
-			Uint16 temp;
+			uint16_t temp;
 			efread(&temp, 2, 1, f);
 			positions[i * 9 + j].patnum = temp / 2;
 			positions[i * 9 + j].transpose = fgetc(f);
@@ -173,7 +173,7 @@ bool lds_load( FILE *f, unsigned int music_offset, unsigned int music_size )
 	unsigned int remaining = music_size - (ftell(f) - music_offset);
 	
 	free(patterns);
-	patterns = malloc(sizeof(Uint16) * (remaining / 2));
+	patterns = malloc(sizeof(uint16_t) * (remaining / 2));
 	
 	for (unsigned int i = 0; i < remaining / 2; i++)
 		efread(&patterns[i], 2, 1, f);
@@ -244,7 +244,7 @@ void lds_setregs_adv(uint8_t reg, uint8_t mask, uint8_t val)
 
 int lds_update( void )
 {
-	Uint16 comword, freq, octave, chan, tune, wibc, tremc, arpreg;
+	uint16_t comword, freq, octave, chan, tune, wibc, tremc, arpreg;
 	int vbreak;
 	uint8_t level, regnum, comhi, comlo;
 	int i;
@@ -301,7 +301,7 @@ int lds_update( void )
 		{
 			c = &channel[chan];
 			if(!c->packwait) {
-				Uint16 patnum = positions[posplay * 9 + chan].patnum;
+				uint16_t patnum = positions[posplay * 9 + chan].patnum;
 				uint8_t transpose = positions[posplay * 9 + chan].transpose;
 				/*printf("> %p", positions);*/
 
@@ -412,8 +412,8 @@ int lds_update( void )
 							}
 						} else {
 							uint8_t	sound;
-							Uint16	high;
-							Sint8	transp = transpose & 127;
+							uint16_t	high;
+							int8_t	transp = transpose & 127;
 							/*
 							 * Originally, in assembler code, the player first shifted
 							 * logically left the transpose byte by 1 and then shifted
@@ -654,16 +654,16 @@ void lds_playsound(int inst_number, int channel_number, int tunehigh)
 {
 	Channel		*c = &channel[channel_number];		/* current channel */
 	SoundBank		*i = &soundbank[inst_number];		/* current instrument */
-	Uint32		regnum = op_table[channel_number];	/* channel's OPL2 register */
+	uint32_t		regnum = op_table[channel_number];	/* channel's OPL2 register */
 	uint8_t		volcalc, octave;
-	Uint16	freq;
+	uint16_t	freq;
 	
 	/* set fine tune */
 	tunehigh += ((i->finetune + c->finetune + 0x80) & 0xff) - 0x80;
 	
 	/* arpeggio handling */
 	if(!i->arpeggio) {
-		Uint16	arpcalc = i->arp_tab[0] << 4;
+		uint16_t	arpcalc = i->arp_tab[0] << 4;
 	
 		if(arpcalc > 0x800)
 			tunehigh = tunehigh - (arpcalc ^ 0xff0) - 16;

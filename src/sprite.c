@@ -42,8 +42,8 @@ void load_sprites( unsigned int table, FILE *f )
 {
 	free_sprites(table);
 	
-	Uint16 temp;
-	efread(&temp, sizeof(Uint16), 1, f);
+	uint16_t temp;
+	efread(&temp, sizeof(uint16_t), 1, f);
 	
 	sprite_table[table].count = temp;
 	
@@ -56,9 +56,9 @@ void load_sprites( unsigned int table, FILE *f )
 		if (!getc(f)) // sprite is empty
 			continue;
 		
-		efread(&cur_sprite->width,  sizeof(Uint16), 1, f);
-		efread(&cur_sprite->height, sizeof(Uint16), 1, f);
-		efread(&cur_sprite->size,   sizeof(Uint16), 1, f);
+		efread(&cur_sprite->width,  sizeof(uint16_t), 1, f);
+		efread(&cur_sprite->height, sizeof(uint16_t), 1, f);
+		efread(&cur_sprite->size,   sizeof(uint16_t), 1, f);
 		
 		cur_sprite->data = malloc(cur_sprite->size);
 		
@@ -206,7 +206,7 @@ void blit_sprite_blend( SDL_Surface *surface, int x, int y, unsigned int table, 
 // does not clip on left or right edges of surface
 // unsafe because it doesn't check that value won't overflow into hue
 // we can replace it when we know that we don't rely on that 'feature'
-void blit_sprite_hv_unsafe( SDL_Surface *surface, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value )
+void blit_sprite_hv_unsafe( SDL_Surface *surface, int x, int y, unsigned int table, unsigned int index, uint8_t hue, int8_t value )
 {
 	if (index >= sprite_table[table].count || !sprite_exists(table, index))
 	{
@@ -268,7 +268,7 @@ void blit_sprite_hv_unsafe( SDL_Surface *surface, int x, int y, unsigned int tab
 }
 
 // does not clip on left or right edges of surface
-void blit_sprite_hv( SDL_Surface *surface, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value )
+void blit_sprite_hv( SDL_Surface *surface, int x, int y, unsigned int table, unsigned int index, uint8_t hue, int8_t value )
 {
 	if (index >= sprite_table[table].count || !sprite_exists(table, index))
 	{
@@ -336,7 +336,7 @@ void blit_sprite_hv( SDL_Surface *surface, int x, int y, unsigned int table, uns
 }
 
 // does not clip on left or right edges of surface
-void blit_sprite_hv_blend( SDL_Surface *surface, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value )
+void blit_sprite_hv_blend( SDL_Surface *surface, int x, int y, unsigned int table, unsigned int index, uint8_t hue, int8_t value )
 {
 	if (index >= sprite_table[table].count || !sprite_exists(table, index))
 	{
@@ -500,7 +500,7 @@ void blit_sprite2( SDL_Surface *surface, int x, int y, Sprite2_array sprite2s, u
 	const uint8_t * const pixels_ll = (uint8_t *)surface->pixels,  // lower limit
 	            * const pixels_ul = (uint8_t *)surface->pixels + (surface->h * surface->pitch);  // upper limit
 	
-	const uint8_t *data = sprite2s.data + SDL_SwapLE16(((Uint16 *)sprite2s.data)[index - 1]);
+	const uint8_t *data = sprite2s.data + SDL_SwapLE16(((uint16_t *)sprite2s.data)[index - 1]);
 	
 	for (; *data != 0x0f; ++data)
 	{
@@ -536,7 +536,7 @@ void blit_sprite2_blend( SDL_Surface *surface,  int x, int y, Sprite2_array spri
 	const uint8_t * const pixels_ll = (uint8_t *)surface->pixels,  // lower limit
 	            * const pixels_ul = (uint8_t *)surface->pixels + (surface->h * surface->pitch);  // upper limit
 	
-	const uint8_t *data = sprite2s.data + SDL_SwapLE16(((Uint16 *)sprite2s.data)[index - 1]);
+	const uint8_t *data = sprite2s.data + SDL_SwapLE16(((uint16_t *)sprite2s.data)[index - 1]);
 	
 	for (; *data != 0x0f; ++data)
 	{
@@ -572,7 +572,7 @@ void blit_sprite2_darken( SDL_Surface *surface, int x, int y, Sprite2_array spri
 	const uint8_t * const pixels_ll = (uint8_t *)surface->pixels,  // lower limit
 	            * const pixels_ul = (uint8_t *)surface->pixels + (surface->h * surface->pitch);  // upper limit
 	
-	const uint8_t *data = sprite2s.data + SDL_SwapLE16(((Uint16 *)sprite2s.data)[index - 1]);
+	const uint8_t *data = sprite2s.data + SDL_SwapLE16(((uint16_t *)sprite2s.data)[index - 1]);
 	
 	for (; *data != 0x0f; ++data)
 	{
@@ -608,7 +608,7 @@ void blit_sprite2_filter( SDL_Surface *surface, int x, int y, Sprite2_array spri
 	const uint8_t * const pixels_ll = (uint8_t *)surface->pixels,  // lower limit
 	            * const pixels_ul = (uint8_t *)surface->pixels + (surface->h * surface->pitch);  // upper limit
 	
-	const uint8_t *data = sprite2s.data + SDL_SwapLE16(((Uint16 *)sprite2s.data)[index - 1]);
+	const uint8_t *data = sprite2s.data + SDL_SwapLE16(((uint16_t *)sprite2s.data)[index - 1]);
 	
 	for (; *data != 0x0f; ++data)
 	{

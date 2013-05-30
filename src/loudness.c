@@ -146,11 +146,11 @@ void audio_cb( void *user_data, unsigned char *sdl_buffer, int howmuch )
 			for (unsigned int smp = 0; smp < qu; smp++)
 			{
 #if (BYTES_PER_SAMPLE == 2)
-				Sint32 clip = (Sint32)feedme[smp] + (Sint32)(channel_pos[ch][smp] * volume);
-				feedme[smp] = (clip > 0x7fff) ? 0x7fff : (clip <= -0x8000) ? -0x8000 : (Sint16)clip;
+				int32_t clip = (int32_t)feedme[smp] + (int32_t)(channel_pos[ch][smp] * volume);
+				feedme[smp] = (clip > 0x7fff) ? 0x7fff : (clip <= -0x8000) ? -0x8000 : (int16_t)clip;
 #else  /* BYTES_PER_SAMPLE */
-				Sint16 clip = (Sint16)feedme[smp] + (Sint16)(channel_pos[ch][smp] * volume);
-				feedme[smp] = (clip > 0x7f) ? 0x7f : (clip <= -0x80) ? -0x80 : (Sint8)clip;
+				int16_t clip = (int16_t)feedme[smp] + (int16_t)(channel_pos[ch][smp] * volume);
+				feedme[smp] = (clip > 0x7f) ? 0x7f : (clip <= -0x80) ? -0x80 : (int8_t)clip;
 #endif  /* BYTES_PER_SAMPLE */
 			}
 			
@@ -278,9 +278,9 @@ void JE_multiSamplePlay(uint8_t *buffer, uint16_t size, uint8_t chan, uint8_t vo
 		for (int ex = 0; ex < SAMPLE_SCALING; ex++)
 		{
 #if (BYTES_PER_SAMPLE == 2)
-			channel_buffer[chan][(i * SAMPLE_SCALING) + ex] = (Sint8)buffer[i] << 8;
+			channel_buffer[chan][(i * SAMPLE_SCALING) + ex] = (int8_t)buffer[i] << 8;
 #else  /* BYTES_PER_SAMPLE */
-			channel_buffer[chan][(i * SAMPLE_SCALING) + ex] = (Sint8)buffer[i];
+			channel_buffer[chan][(i * SAMPLE_SCALING) + ex] = (int8_t)buffer[i];
 #endif  /* BYTES_PER_SAMPLE */
 		}
 	}

@@ -43,7 +43,7 @@ void JE_createNewEventEnemy( uint8_t enemytypeofs, uint16_t enemyoffset, int16_t
 
 void JE_doNetwork( void );
 
-uint32_t JE_makeEnemy( struct JE_SingleEnemyType *enemy, Uint16 eDatI, int16_t uniqueShapeTableI );
+uint32_t JE_makeEnemy( struct JE_SingleEnemyType *enemy, uint16_t eDatI, int16_t uniqueShapeTableI );
 
 void JE_eventJump( uint16_t jump );
 
@@ -51,7 +51,7 @@ void JE_whoa( void );
 
 void JE_barX ( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint8_t col );
 
-int16_t JE_newEnemy( int enemyOffset, Uint16 eDatI, int16_t uniqueShapeTableI );
+int16_t JE_newEnemy( int enemyOffset, uint16_t eDatI, int16_t uniqueShapeTableI );
 void JE_drawEnemy( int enemyOffset );
 void JE_starShowVGA( void );
 

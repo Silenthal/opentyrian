@@ -270,7 +270,7 @@ extern uint8_t demo_num;
 extern FILE *demo_file;
 
 extern uint8_t demo_keys, next_demo_keys;
-extern Uint16 demo_keys_wait;
+extern uint16_t demo_keys_wait;
 
 extern uint8_t soundQueue[8];
 extern bool enemyContinualDamage;

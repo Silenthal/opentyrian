@@ -124,7 +124,7 @@ void nn_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 		{
 			for (int z = scale; z > 0; z--)
 			{
-				*(Uint32 *)dst = rgb_palette[*src];
+				*(uint32_t *)dst = rgb_palette[*src];
 				dst += dst_Bpp;
 			}
 			src++;
@@ -173,7 +173,7 @@ void nn_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 		{
 			for (int z = scale; z > 0; z--)
 			{
-				*(Uint16 *)dst = rgb_palette[*src];
+				*(uint16_t *)dst = rgb_palette[*src];
 				dst += dst_Bpp;
 			}
 			src++;
@@ -208,7 +208,7 @@ void scale2x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 	
 	int prevline, nextline;
 	
-	Uint32 E0, E1, E2, E3, B, D, E, F, H;
+	uint32_t E0, E1, E2, E3, B, D, E, F, H;
 	for (int y = 0; y < height; y++)
 	{
 		src_temp = src;
@@ -234,10 +234,10 @@ void scale2x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 				E0 = E1 = E2 = E3 = E;
 			}
 			
-			*(Uint32 *)dst = E0;
-			*(Uint32 *)(dst + dst_Bpp) = E1;
-			*(Uint32 *)(dst + dst_pitch) = E2;
-			*(Uint32 *)(dst + dst_pitch + dst_Bpp) = E3;
+			*(uint32_t *)dst = E0;
+			*(uint32_t *)(dst + dst_Bpp) = E1;
+			*(uint32_t *)(dst + dst_pitch) = E2;
+			*(uint32_t *)(dst + dst_pitch + dst_Bpp) = E3;
 			
 			src++;
 			dst += 2 * dst_Bpp;
@@ -261,7 +261,7 @@ void scale2x_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 	
 	int prevline, nextline;
 	
-	Uint16 E0, E1, E2, E3, B, D, E, F, H;
+	uint16_t E0, E1, E2, E3, B, D, E, F, H;
 	for (int y = 0; y < height; y++)
 	{
 		src_temp = src;
@@ -287,10 +287,10 @@ void scale2x_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 				E0 = E1 = E2 = E3 = E;
 			}
 			
-			*(Uint16 *)dst = E0;
-			*(Uint16 *)(dst + dst_Bpp) = E1;
-			*(Uint16 *)(dst + dst_pitch) = E2;
-			*(Uint16 *)(dst + dst_pitch + dst_Bpp) = E3;
+			*(uint16_t *)dst = E0;
+			*(uint16_t *)(dst + dst_Bpp) = E1;
+			*(uint16_t *)(dst + dst_pitch) = E2;
+			*(uint16_t *)(dst + dst_pitch + dst_Bpp) = E3;
 			
 			src++;
 			dst += 2 * dst_Bpp;
@@ -315,7 +315,7 @@ void scale3x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 	
 	int prevline, nextline;
 	
-	Uint32 E0, E1, E2, E3, E4, E5, E6, E7, E8, A, B, C, D, E, F, G, H, I;
+	uint32_t E0, E1, E2, E3, E4, E5, E6, E7, E8, A, B, C, D, E, F, G, H, I;
 	for (int y = 0; y < height; y++)
 	{
 		src_temp = src;
@@ -350,15 +350,15 @@ void scale3x_32( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 				E0 = E1 = E2 = E3 = E4 = E5 = E6 = E7 = E8 = E;
 			}
 			
-			*(Uint32 *)dst = E0;
-			*(Uint32 *)(dst + dst_Bpp) = E1;
-			*(Uint32 *)(dst + 2 * dst_Bpp) = E2;
-			*(Uint32 *)(dst + dst_pitch) = E3;
-			*(Uint32 *)(dst + dst_pitch + dst_Bpp) = E4;
-			*(Uint32 *)(dst + dst_pitch + 2 * dst_Bpp) = E5;
-			*(Uint32 *)(dst + 2 * dst_pitch) = E6;
-			*(Uint32 *)(dst + 2 * dst_pitch + dst_Bpp) = E7;
-			*(Uint32 *)(dst + 2 * dst_pitch + 2 * dst_Bpp) = E8;
+			*(uint32_t *)dst = E0;
+			*(uint32_t *)(dst + dst_Bpp) = E1;
+			*(uint32_t *)(dst + 2 * dst_Bpp) = E2;
+			*(uint32_t *)(dst + dst_pitch) = E3;
+			*(uint32_t *)(dst + dst_pitch + dst_Bpp) = E4;
+			*(uint32_t *)(dst + dst_pitch + 2 * dst_Bpp) = E5;
+			*(uint32_t *)(dst + 2 * dst_pitch) = E6;
+			*(uint32_t *)(dst + 2 * dst_pitch + dst_Bpp) = E7;
+			*(uint32_t *)(dst + 2 * dst_pitch + 2 * dst_Bpp) = E8;
 			
 			src++;
 			dst += 3 * dst_Bpp;
@@ -382,7 +382,7 @@ void scale3x_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 	
 	int prevline, nextline;
 	
-	Uint16 E0, E1, E2, E3, E4, E5, E6, E7, E8, A, B, C, D, E, F, G, H, I;
+	uint16_t E0, E1, E2, E3, E4, E5, E6, E7, E8, A, B, C, D, E, F, G, H, I;
 	for (int y = 0; y < height; y++)
 	{
 		src_temp = src;
@@ -417,15 +417,15 @@ void scale3x_16( SDL_Surface *src_surface, SDL_Surface *dst_surface )
 				E0 = E1 = E2 = E3 = E4 = E5 = E6 = E7 = E8 = E;
 			}
 			
-			*(Uint16 *)dst = E0;
-			*(Uint16 *)(dst + dst_Bpp) = E1;
-			*(Uint16 *)(dst + 2 * dst_Bpp) = E2;
-			*(Uint16 *)(dst + dst_pitch) = E3;
-			*(Uint16 *)(dst + dst_pitch + dst_Bpp) = E4;
-			*(Uint16 *)(dst + dst_pitch + 2 * dst_Bpp) = E5;
-			*(Uint16 *)(dst + 2 * dst_pitch) = E6;
-			*(Uint16 *)(dst + 2 * dst_pitch + dst_Bpp) = E7;
-			*(Uint16 *)(dst + 2 * dst_pitch + 2 * dst_Bpp) = E8;
+			*(uint16_t *)dst = E0;
+			*(uint16_t *)(dst + dst_Bpp) = E1;
+			*(uint16_t *)(dst + 2 * dst_Bpp) = E2;
+			*(uint16_t *)(dst + dst_pitch) = E3;
+			*(uint16_t *)(dst + dst_pitch + dst_Bpp) = E4;
+			*(uint16_t *)(dst + dst_pitch + 2 * dst_Bpp) = E5;
+			*(uint16_t *)(dst + 2 * dst_pitch) = E6;
+			*(uint16_t *)(dst + 2 * dst_pitch + dst_Bpp) = E7;
+			*(uint16_t *)(dst + 2 * dst_pitch + 2 * dst_Bpp) = E8;
 			
 			src++;
 			dst += 3 * dst_Bpp;

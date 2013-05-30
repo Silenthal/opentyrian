@@ -114,7 +114,7 @@ void jukebox( void )
 		wait_delay();
 
 		// quit on mouse click
-		Uint16 x, y;
+		uint16_t x, y;
 		if (JE_mousePosition(&x, &y) > 0)
 			trigger_quit = true;
 

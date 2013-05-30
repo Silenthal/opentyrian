@@ -67,21 +67,21 @@ LDLIBS += $(EXTRA_LDLIBS) $(SDL_LDLIBS)
 
 .PHONY : all release clean
 
-all : dirtest $(TARGET) 
+all : dirmake $(TARGET) 
 
 release : all
 	$(STRIP) $(TARGET)
 
 clean :
-	$(RMDIR) obj
-	$(RMFILE) $(TARGET)
+	-$(RMDIR) obj
+	-$(RMFILE) $(TARGET)
 
 ifneq ($(MAKECMDGOALS), clean)
     -include $(OBJS:.o=.d)
 endif
 
-dirtest :
-	test -d obj || $(MKDIR) obj
+dirmake :
+	-$(MKDIR) obj
 
 $(TARGET) : $(OBJS)
 	$(CC) -o $@ $(ALL_LDFLAGS) $^ $(LDLIBS)

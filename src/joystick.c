@@ -539,7 +539,7 @@ bool detect_joystick_assignment( int j, Joystick_assignment *assignment )
 	// get initial joystick state to compare against to see if anything was pressed
 	
 	const int axes = SDL_JoystickNumAxes(joystick[j].handle);
-	Sint16 *axis = malloc(axes * sizeof(*axis));
+	int16_t *axis = malloc(axes * sizeof(*axis));
 	for (int i = 0; i < axes; i++)
 		axis[i] = SDL_JoystickGetAxis(joystick[j].handle, i);
 	
@@ -563,7 +563,7 @@ bool detect_joystick_assignment( int j, Joystick_assignment *assignment )
 		
 		for (int i = 0; i < axes; ++i)
 		{
-			Sint16 temp = SDL_JoystickGetAxis(joystick[j].handle, i);
+			int16_t temp = SDL_JoystickGetAxis(joystick[j].handle, i);
 			
 			if (abs(temp - axis[i]) > joystick_analog_max * 2 / 3)
 			{

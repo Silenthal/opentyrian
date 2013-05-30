@@ -41,8 +41,8 @@
 
 typedef struct
 {
-	Uint16 width, height;
-	Uint16 size;
+	uint16_t width, height;
+	uint16_t size;
 	uint8_t *data;
 }
 Sprite;
@@ -67,11 +67,11 @@ static inline bool sprite_exists( unsigned int table, unsigned int index )
 {
 	return (sprite(table, index)->data != NULL);
 }
-static inline Uint16 get_sprite_width( unsigned int table, unsigned int index )
+static inline uint16_t get_sprite_width( unsigned int table, unsigned int index )
 {
 	return (sprite_exists(table, index) ? sprite(table, index)->width : 0);
 }
-static inline Uint16 get_sprite_height( unsigned int table, unsigned int index )
+static inline uint16_t get_sprite_height( unsigned int table, unsigned int index )
 {
 	return (sprite_exists(table, index) ? sprite(table, index)->height : 0);
 }
@@ -82,9 +82,9 @@ void free_sprites( unsigned int table );
 
 void blit_sprite( SDL_Surface *, int x, int y, unsigned int table, unsigned int index ); // JE_newDrawCShapeNum
 void blit_sprite_blend( SDL_Surface *, int x, int y, unsigned int table, unsigned int index ); // JE_newDrawCShapeTrick
-void blit_sprite_hv_unsafe( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value ); // JE_newDrawCShapeBright
-void blit_sprite_hv( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value ); // JE_newDrawCShapeAdjust
-void blit_sprite_hv_blend( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, Sint8 value ); // JE_newDrawCShapeModify
+void blit_sprite_hv_unsafe( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, int8_t value ); // JE_newDrawCShapeBright
+void blit_sprite_hv( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, int8_t value ); // JE_newDrawCShapeAdjust
+void blit_sprite_hv_blend( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, uint8_t hue, int8_t value ); // JE_newDrawCShapeModify
 void blit_sprite_dark( SDL_Surface *, int x, int y, unsigned int table, unsigned int index, bool black ); // JE_newDrawCShapeDarken, JE_newDrawCShapeShadow
 
 typedef struct

@@ -1459,7 +1459,7 @@ void JE_highScoreCheck( void )
 	free_sprite2s(&shapes6);
 	JE_loadCompShapes(&shapes6, '1');  // need mouse cursor sprite
 
-	Sint32 temp_score;
+	int32_t temp_score;
 
 	for (int temp_p = 0; temp_p < (twoPlayerMode ? 2 : 1); ++temp_p)
 	{
@@ -1853,7 +1853,7 @@ bool read_demo_keys( void )
 {
 	demo_keys = next_demo_keys;
 
-	efread(&demo_keys_wait, sizeof(Uint16), 1, demo_file);
+	efread(&demo_keys_wait, sizeof(uint16_t), 1, demo_file);
 	demo_keys_wait = SDL_Swap16(demo_keys_wait);
 
 	next_demo_keys = getc(demo_file);
@@ -2151,7 +2151,7 @@ void JE_endLevelAni( void )
 	uint8_t temp;
 	char tempStr[256];
 
-	Sint8 i;
+	int8_t i;
 
 	if (!constantPlay)
 	{
@@ -3188,7 +3188,7 @@ redo:
 						if (new_input)
 						{
 							demo_keys_wait = SDL_Swap16(demo_keys_wait);
-							efwrite(&demo_keys_wait, sizeof(Uint16), 1, demo_file);
+							efwrite(&demo_keys_wait, sizeof(uint16_t), 1, demo_file);
 
 							demo_keys = 0;
 							for (unsigned int i = 0; i < 8; i++)
@@ -3242,7 +3242,7 @@ redo:
 #ifdef WITH_NETWORK
 			if (isNetworkGame && playerNum_ == thisPlayerNum)
 			{
-				Uint16 buttons = 0;
+				uint16_t buttons = 0;
 				for (int i = 4 - 1; i >= 0; i--)
 				{
 					buttons <<= 1;
@@ -3281,31 +3281,31 @@ redo:
 				if (thisPlayerNum == 2)
 					difficultyLevel = SDLNet_Read16(&packet_state_in[0]->data[16]);
 
-				Uint16 buttons = SDLNet_Read16(&packet_state_in[0]->data[12]);
+				uint16_t buttons = SDLNet_Read16(&packet_state_in[0]->data[12]);
 				for (int i = 0; i < 4; i++)
 				{
 					button[i] = buttons & 1;
 					buttons >>= 1;
 				}
 
-				this_player->x += (Sint16)SDLNet_Read16(&packet_state_in[0]->data[4]);
-				this_player->y += (Sint16)SDLNet_Read16(&packet_state_in[0]->data[6]);
-				accelXC = (Sint16)SDLNet_Read16(&packet_state_in[0]->data[8]);
-				accelYC = (Sint16)SDLNet_Read16(&packet_state_in[0]->data[10]);
+				this_player->x += (int16_t)SDLNet_Read16(&packet_state_in[0]->data[4]);
+				this_player->y += (int16_t)SDLNet_Read16(&packet_state_in[0]->data[6]);
+				accelXC = (int16_t)SDLNet_Read16(&packet_state_in[0]->data[8]);
+				accelYC = (int16_t)SDLNet_Read16(&packet_state_in[0]->data[10]);
 			}
 			else
 			{
-				Uint16 buttons = SDLNet_Read16(&packet_state_out[network_delay]->data[12]);
+				uint16_t buttons = SDLNet_Read16(&packet_state_out[network_delay]->data[12]);
 				for (int i = 0; i < 4; i++)
 				{
 					button[i] = buttons & 1;
 					buttons >>= 1;
 				}
 
-				this_player->x += (Sint16)SDLNet_Read16(&packet_state_out[network_delay]->data[4]);
-				this_player->y += (Sint16)SDLNet_Read16(&packet_state_out[network_delay]->data[6]);
-				accelXC = (Sint16)SDLNet_Read16(&packet_state_out[network_delay]->data[8]);
-				accelYC = (Sint16)SDLNet_Read16(&packet_state_out[network_delay]->data[10]);
+				this_player->x += (int16_t)SDLNet_Read16(&packet_state_out[network_delay]->data[4]);
+				this_player->y += (int16_t)SDLNet_Read16(&packet_state_out[network_delay]->data[6]);
+				accelXC = (int16_t)SDLNet_Read16(&packet_state_out[network_delay]->data[8]);
+				accelYC = (int16_t)SDLNet_Read16(&packet_state_out[network_delay]->data[10]);
 			}
 		}
 #endif

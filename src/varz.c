@@ -222,7 +222,7 @@ uint8_t demo_num = 0;
 FILE *demo_file = NULL;
 
 uint8_t demo_keys, next_demo_keys;
-Uint16 demo_keys_wait;
+uint16_t demo_keys_wait;
 
 /* Sound Effects Queue */
 uint8_t soundQueue[8]; /* [0..7] */

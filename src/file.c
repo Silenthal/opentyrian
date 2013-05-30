@@ -131,11 +131,11 @@ size_t efread( void *buffer, size_t size, size_t num, FILE *stream )
 	{
 		case 2:
 			for (size_t i = 0; i < num; i++)
-				((Uint16 *)buffer)[i] = SDL_Swap16(((Uint16 *)buffer)[i]);
+				((uint16_t *)buffer)[i] = SDL_Swap16(((uint16_t *)buffer)[i]);
 			break;
 		case 4:
 			for (size_t i = 0; i < num; i++)
-				((Uint32 *)buffer)[i] = SDL_Swap32(((Uint32 *)buffer)[i]);
+				((uint32_t *)buffer)[i] = SDL_Swap32(((uint32_t *)buffer)[i]);
 			break;
 		case 8:
 			for (size_t i = 0; i < num; i++)
@@ -158,12 +158,12 @@ size_t efwrite( void *buffer, size_t size, size_t num, FILE *stream )
 		case 2:
 			swap_buffer = malloc(size * num);
 			for (size_t i = 0; i < num; i++)
-				((Uint16 *)swap_buffer)[i] = SDL_SwapLE16(((Uint16 *)buffer)[i]);
+				((uint16_t *)swap_buffer)[i] = SDL_SwapLE16(((uint16_t *)buffer)[i]);
 			break;
 		case 4:
 			swap_buffer = malloc(size * num);
 			for (size_t i = 0; i < num; i++)
-				((Uint32 *)swap_buffer)[i] = SDL_SwapLE32(((Uint32 *)buffer)[i]);
+				((uint32_t *)swap_buffer)[i] = SDL_SwapLE32(((uint32_t *)buffer)[i]);
 			break;
 		case 8:
 			swap_buffer = malloc(size * num);

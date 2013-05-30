@@ -155,7 +155,7 @@ void MSG_WriteWord(sizebuf_t * sz, unsigned int value)
 		return;
 	}
 
-	*((Uint16 *)(sz->data + sz->bufferPos)) = SDL_SwapLE16( ((Uint16)value) );
+	*((uint16_t *)(sz->data + sz->bufferPos)) = SDL_SwapLE16( ((uint16_t)value) );
 	sz->bufferPos += 2;
 }
 void MSG_WriteDWord(sizebuf_t * sz, unsigned int value)
@@ -166,7 +166,7 @@ void MSG_WriteDWord(sizebuf_t * sz, unsigned int value)
 		return;
 	}
 
-	*((Uint32 *)(sz->data + sz->bufferPos)) = SDL_SwapLE32( ((Uint32)value) );
+	*((uint32_t *)(sz->data + sz->bufferPos)) = SDL_SwapLE32( ((uint32_t)value) );
 	sz->bufferPos += 4;
 }
 
@@ -197,7 +197,7 @@ unsigned int MSG_ReadWord(sizebuf_t * sz)
 		return(0);
 	}
 
-	ret = SDL_SwapLE16(*((Uint16 *)(sz->data + sz->bufferPos)));
+	ret = SDL_SwapLE16(*((uint16_t *)(sz->data + sz->bufferPos)));
 	sz->bufferPos += 2;
 
 	return(ret);
@@ -213,7 +213,7 @@ unsigned int MSG_ReadDWord(sizebuf_t * sz)
 		return(0);
 	}
 
-	ret = SDL_SwapLE32(*((Uint32 *)(sz->data + sz->bufferPos)));
+	ret = SDL_SwapLE32(*((uint32_t *)(sz->data + sz->bufferPos)));
 	sz->bufferPos += 4;
 
 	return(ret);

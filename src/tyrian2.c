@@ -2427,7 +2427,7 @@ draw_player_shot_loop_end:
 	{
 		if (!reallyEndLevel)
 		{
-			Uint16 requests = (pauseRequest == true) |
+			uint16_t requests = (pauseRequest == true) |
 			                  (inGameMenuRequest == true) << 1 |
 			                  (skipLevelRequest == true) << 2 |
 			                  (nortShipRequest == true) << 3;
@@ -3900,7 +3900,7 @@ void JE_displayText( void )
 	levelWarningDisplay = false;
 }
 
-Sint16 JE_newEnemy( int enemyOffset, Uint16 eDatI, Sint16 uniqueShapeTableI )
+int16_t JE_newEnemy( int enemyOffset, uint16_t eDatI, int16_t uniqueShapeTableI )
 {
 	for (int i = enemyOffset; i < enemyOffset + 25; ++i)
 	{
@@ -3914,7 +3914,7 @@ Sint16 JE_newEnemy( int enemyOffset, Uint16 eDatI, Sint16 uniqueShapeTableI )
 	return 0;
 }
 
-uint32_t JE_makeEnemy( struct JE_SingleEnemyType *enemy, Uint16 eDatI, Sint16 uniqueShapeTableI )
+uint32_t JE_makeEnemy( struct JE_SingleEnemyType *enemy, uint16_t eDatI, int16_t uniqueShapeTableI )
 {
 	uint32_t avail;
 
@@ -4189,7 +4189,7 @@ uint32_t JE_makeEnemy( struct JE_SingleEnemyType *enemy, Uint16 eDatI, Sint16 un
 	return avail;
 }
 
-void JE_createNewEventEnemy( uint8_t enemyTypeOfs, uint16_t enemyOffset, Sint16 uniqueShapeTableI )
+void JE_createNewEventEnemy( uint8_t enemyTypeOfs, uint16_t enemyOffset, int16_t uniqueShapeTableI )
 {
 	int i;
 
